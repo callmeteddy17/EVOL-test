@@ -1,13 +1,8 @@
 'use client';
+import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
-import { Separator } from '@/components/ui/separator';
+import { useAppDispatch } from '@/lib/hooks';
+import { setSearch } from '@/lib/redux/global/reducer';
 import {
   Image as ImageType,
   Like,
@@ -15,16 +10,9 @@ import {
   TypePost,
   Video as VideoType,
 } from '@prisma/client';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import useDebounce from '@/hooks/useDebounce';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { setSearch } from '@/lib/redux/global/reducer';
 
 type Props = {};
 

@@ -85,7 +85,7 @@ export async function GET(request: NextRequest) {
     const cursor: any = lastPointInResults.id;
 
     const nextPage = await client.post.findMany({
-      take: take ? parseInt(take as string) : 10,
+      take: take ? parseInt(take as string) : 5,
       skip: 1,
       cursor: {
         id: cursor,

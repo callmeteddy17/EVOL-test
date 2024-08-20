@@ -13,7 +13,7 @@ export default function Menu({}: Props) {
     // { icon: <Image></Image>, url: '', label: 'Image' },
   ];
   return (
-    <div className="w-1/4 max-md:hidden ">
+    <div className="w-1/4 max-sm:hidden max-md:w-2/5 ">
       <Card className="w-full p-3 flex-col flex ">
         {MenuOptions.map((item, i) => (
           <Link

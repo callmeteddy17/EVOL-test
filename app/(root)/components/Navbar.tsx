@@ -59,9 +59,12 @@ const Navbar = (props: Props) => {
         </div>
       </div>
       <div className="flex justify-center items-center gap-3">
-        {openSearch ? (
+        {openSearch || selector.search ? (
           <div className=" hidden max-md:flex w-full  relative">
-            <Input onChange={handleSearch} className="w-full"></Input>
+            <Input
+              value={selector.search ? selector.search : ''}
+              onChange={handleSearch}
+              className="w-full"></Input>
             <div
               onClick={() => {
                 setOpenSearch(false);
@@ -73,7 +76,6 @@ const Navbar = (props: Props) => {
           </div>
         ) : (
           <Button
-            value={selector.search ? selector.search : ''}
             variant="outline"
             size="icon"
             className="hidden max-md:flex justify-center items-center">
