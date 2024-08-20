@@ -1,19 +1,16 @@
 'use client';
-import React from 'react';
-import SignUpForm from './components/SignUpForm';
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
 } from '@/components/ui/card';
-import { useSession } from 'next-auth/react';
+import usePageSession from '@/hooks/useAppSession';
 import { useRouter } from 'next/navigation';
+import SignUpForm from './components/SignUpForm';
 
 const page = () => {
-  const { status } = useSession();
+  const { status } = usePageSession();
   const router = useRouter();
 
   if (status === 'authenticated') {

@@ -5,12 +5,12 @@ import {
   CardDescription,
   CardHeader,
 } from '@/components/ui/card';
-import SignInForm from './components/SignInForm';
-import { useSession } from 'next-auth/react';
+import usePageSession from '@/hooks/useAppSession';
 import { useRouter } from 'next/navigation';
+import SignInForm from './components/SignInForm';
 
 const page = () => {
-  const { status } = useSession();
+  const { status } = usePageSession();
   const router = useRouter();
 
   if (status === 'authenticated') {

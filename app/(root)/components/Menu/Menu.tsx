@@ -1,8 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { Home, Image } from 'lucide-react';
+import { Home } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react';
 import ListTag from './ListTag';
 
 type Props = {};

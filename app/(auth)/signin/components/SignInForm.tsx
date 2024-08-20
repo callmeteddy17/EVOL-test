@@ -13,16 +13,15 @@ import { useToast } from '@/components/ui/use-toast';
 import { SignInSchema } from '@/type/zod-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeClosedIcon, EyeOpenIcon } from '@radix-ui/react-icons';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 const SignInForm = () => {
-  const { data: Session, status } = useSession();
   const router = useRouter();
 
   const [isView, setIsView] = useState<boolean>(false);
