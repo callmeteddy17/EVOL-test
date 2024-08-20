@@ -9,7 +9,7 @@ import usePageSession from '@/hooks/useAppSession';
 import { useRouter } from 'next/navigation';
 import SignUpForm from './components/SignUpForm';
 
-const page = () => {
+const Page = () => {
   const { status } = usePageSession();
   const router = useRouter();
 
@@ -34,4 +34,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
