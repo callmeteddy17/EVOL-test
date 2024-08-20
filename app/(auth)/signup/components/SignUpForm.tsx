@@ -41,7 +41,7 @@ const SignUpForm = () => {
       });
 
       toast({
-        title: 'Success',
+        title: 'Success ',
         description: 'Registered Successfully',
       });
       form.reset();
