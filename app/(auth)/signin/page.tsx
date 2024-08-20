@@ -26,7 +26,7 @@ const Page = () => {
         <CardDescription className="text-center pb-6">
           The future of community engagement
         </CardDescription>
-        <CardContent className="h-[500px]">
+        <CardContent className="h-[400px]">
           <SignInForm></SignInForm>
         </CardContent>
       </Card>
