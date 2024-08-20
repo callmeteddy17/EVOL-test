@@ -81,7 +81,7 @@ const ListTag = (props: Props) => {
 
   return (
     <Card className="w-full p-5 ">
-      <p>Tags</p>
+      <p className="font-semibold text-lg">Tags</p>
       <div className="mt-2 flex flex-wrap gap-2">
         {tagList?.map((tag, id) => (
           <Button

@@ -40,7 +40,6 @@ const Trending = (props: Props) => {
   const dispatch = useAppDispatch();
 
   const AllPost = async ({ take, lastCursor, typePost }: PostQueryParams) => {
-    console.log(take);
     const response = await axios.get('/api/getpost', {
       params: {
         take,

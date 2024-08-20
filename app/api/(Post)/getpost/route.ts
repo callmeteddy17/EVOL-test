@@ -15,8 +15,9 @@ export async function GET(request: NextRequest) {
   const lastCursor = searchParams.get('lastCursor');
   const search = searchParams.get('search');
   const filter = searchParams.get('filter');
+
   let where = {};
-  let orderBy = {};
+
   if (search) {
     where = {
       OR: [
@@ -28,14 +29,6 @@ export async function GET(request: NextRequest) {
   } else {
     where = {
       type: typePost as TypePost,
-    };
-  }
-  if (filter) {
-    const parsedFilter = JSON.parse(filter);
-    orderBy = { parsedFilter };
-  } else {
-    orderBy = {
-      createdAt: 'desc',
     };
   }
 
@@ -65,7 +58,9 @@ export async function GET(request: NextRequest) {
           id: lastCursor as string,
         },
       }),
-      orderBy,
+      orderBy: {
+        createdAt: filter ? (filter as 'asc' | 'desc') : 'desc',
+      },
     });
 
     if (Post.length == 0) {

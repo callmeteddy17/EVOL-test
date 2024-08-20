@@ -24,9 +24,10 @@ import CommentSection from './CommentSection';
 import LinkPreview from './LinkPreview';
 import PostSkeleton from './PostSkeleton';
 import UserEngagement from './UserEngagement';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import useDebounce from '@/hooks/useDebounce';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { setFilter } from '@/lib/redux/global/reducer';
 
 type Props = {};
 
@@ -35,6 +36,7 @@ type PostQueryParams = {
   lastCursor?: string;
   typePost: TypePost;
   search?: string;
+  filter?: string;
 };
 
 export interface PostData extends Post {
@@ -54,7 +56,9 @@ const PostItem = (props: Props) => {
   const selector = useAppSelector((state) => state.global);
   const debounceSearch = useDebounce(selector.search, 1000);
   const refresh = selector.refresh;
+  const filter = selector.filter;
   const [search, setSearch] = useState('');
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     setSearch(debounceSearch);
@@ -62,6 +66,11 @@ const PostItem = (props: Props) => {
   useEffect(() => {
     refetch();
   }, [refresh]);
+  useEffect(() => {
+    if (!search) {
+      dispatch(setFilter('desc'));
+    }
+  }, [search]);
 
   const { ref, inView } = useInView();
   const AllPost = async ({
@@ -69,6 +78,7 @@ const PostItem = (props: Props) => {
     lastCursor,
     typePost,
     search,
+    filter,
   }: PostQueryParams) => {
     const response = await axios.get('/api/getpost', {
       params: {
@@ -76,6 +86,7 @@ const PostItem = (props: Props) => {
         lastCursor,
         typePost,
         search,
+        filter,
       },
     });
     return response?.data;
@@ -97,8 +108,9 @@ const PostItem = (props: Props) => {
         lastCursor: pageParam,
         typePost: TypePost.POST,
         search,
+        filter: filter,
       }),
-    queryKey: ['posts', search],
+    queryKey: ['posts', search, filter],
     getNextPageParam: (lastPage) => {
       return lastPage?.metaData.lastCursor;
     },

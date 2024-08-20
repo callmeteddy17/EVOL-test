@@ -3,11 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 export interface Global {
   search: string;
   refresh: number;
+  filter: 'asc' | 'desc';
 }
 
 const initialState: Global = {
   search: '',
   refresh: 0,
+  filter: 'desc',
 };
 
 const GlobalSlice = createSlice({
@@ -20,11 +22,15 @@ const GlobalSlice = createSlice({
     setRefresh(state, action) {
       state.refresh = action.payload;
     },
+    setFilter(state, action) {
+      state.filter = action.payload;
+    },
     removeGlobal(state, action) {
       return action.payload;
     },
   },
 });
 
-export const { setSearch, setRefresh, removeGlobal } = GlobalSlice.actions;
+export const { setFilter, setSearch, setRefresh, removeGlobal } =
+  GlobalSlice.actions;
 export default GlobalSlice.reducer;

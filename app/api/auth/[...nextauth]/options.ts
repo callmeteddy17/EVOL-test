@@ -32,11 +32,11 @@ export const options: NextAuthOptions = {
           credential.password,
           user.password!
         );
-        console.log(password);
+
         if (!password) {
           return null;
         }
-        console.log(user);
+
         return user;
       },
     }),

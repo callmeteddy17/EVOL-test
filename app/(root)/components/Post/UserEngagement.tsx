@@ -43,7 +43,7 @@ const UserEngagement = ({ post }: Props) => {
       const response = await axios.post('/api/likepost', {
         PostId: post.id,
       });
-      console.log(response.data);
+
       dispatch(setRefresh(Math.random()));
       setCommentContent('');
     } catch (error) {
